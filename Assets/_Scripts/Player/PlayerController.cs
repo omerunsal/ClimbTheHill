@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : CharacterController
 {
@@ -21,7 +23,7 @@ public class PlayerController : CharacterController
     private void Start()
     {
 
-        //handController.ChangeHandScale(1);
+        GetLimits();
     }
 
     void Update()
@@ -41,6 +43,12 @@ public class PlayerController : CharacterController
     private void FixedUpdate()
     {
         base.Movement();
+
+        // if (Input.GetKey("space"))
+        // {
+        //     Jump();
+        // }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,6 +112,13 @@ public class PlayerController : CharacterController
         gO.transform.SetParent(back.transform);
         x += 0.025f;
     }
+
+    private void Jump()
+    {
+        transform.DOJump(transform.position + new Vector3(0f,0f,1f), 3.5f, 1, 1.5f);
+    }
+    
+    
 
     //private void OnCollisionExit(Collision other)
     //{

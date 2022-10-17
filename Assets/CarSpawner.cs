@@ -18,7 +18,7 @@ public class CarSpawner : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            yield return new WaitForSeconds(2f);
+            
 
             int randomIndexForCar = Random.Range(0, 3);
             int randomIndexForAngle = Random.Range(0, 3);
@@ -27,6 +27,7 @@ public class CarSpawner : MonoBehaviour
             Instantiate(carList[randomIndexForCar], bouncePositionList[randomIndexForPosition].position,
                 Quaternion.Euler(bounceAngleList[randomIndexForAngle])
             );
+            yield return new WaitForSeconds(2f);
         }
     }
 

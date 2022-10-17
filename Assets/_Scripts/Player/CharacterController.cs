@@ -17,16 +17,20 @@ public class CharacterController : MonoBehaviour
     public Vector3 direction;
     private Rigidbody rigidbody;
 
-
+    private PlayArea playArea;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-
+        playArea = GameObject.FindGameObjectWithTag("PlayArea").GetComponent<PlayArea>();
     }
 
 
-
+    protected void GetLimits()
+    {
+        xLimits = playArea.playLimit.xLimits;
+        zLimits = playArea.playLimit.zLimits;
+    }
 
 
     protected virtual void Movement()
