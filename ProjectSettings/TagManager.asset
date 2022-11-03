@@ -7,6 +7,7 @@ TagManager:
   - PlayArea
   - Car
   - FinishGround
+  - Razor
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
-  - 
+  - Obstacle
+  - Car
   - 
   - 
   - 

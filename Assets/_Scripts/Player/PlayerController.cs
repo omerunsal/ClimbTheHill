@@ -32,13 +32,16 @@ public class PlayerController : CharacterController
 
         if (!isTouched || direction == Vector3.zero || GamePaused == true)
         {
+            SetCharacterState(CharacterState.Idle);
             return;
         }
-
+        
+        SetCharacterState(CharacterState.Run);
         RotateToDirection();
 
         lastPos = transform.position;
     }
+    
 
     private void FixedUpdate()
     {
@@ -51,39 +54,41 @@ public class PlayerController : CharacterController
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.CompareTag("Cube"))
-        {
-            //SetCharacterState(CharacterState.Push);
-            AddToObstacle(other.gameObject);
-            Destroy(other.gameObject);
-        }
-
-        if (other.transform.CompareTag("FirstTutorial"))
-        {
-            // Time.timeScale = 0f;
-            // GamePaused = true;
-
-            // StartCoroutine(ShowSecTutorial()); //tutorial göster ve button'a yönlerdir 1f yap
-
-            // if (GamePaused == true)
-            // {
-            //     Time.timeScale = 1f;
-            //     GamePaused = false;
-            // }
-            // else
-            // {
-            //     Time.timeScale = 0f;
-            //     GamePaused = true;
-            // }
-
-            print("Tutorial");
-
-
-            return;
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.transform.CompareTag("Cube"))
+    //     {
+    //         //SetCharacterState(CharacterState.Push);
+    //         AddToObstacle(other.gameObject);
+    //         Destroy(other.gameObject);
+    //     }
+    //
+    //     if (other.transform.CompareTag("FirstTutorial"))
+    //     {
+    //         // Time.timeScale = 0f;
+    //         // GamePaused = true;
+    //
+    //         // StartCoroutine(ShowSecTutorial()); //tutorial göster ve button'a yönlerdir 1f yap
+    //
+    //         // if (GamePaused == true)
+    //         // {
+    //         //     Time.timeScale = 1f;
+    //         //     GamePaused = false;
+    //         // }
+    //         // else
+    //         // {
+    //         //     Time.timeScale = 0f;
+    //         //     GamePaused = true;
+    //         // }
+    //
+    //         print("Tutorial");
+    //
+    //
+    //         return;
+    //     }
+    // }
+    
+    
 
     IEnumerator ShowSecTutorial()
     {

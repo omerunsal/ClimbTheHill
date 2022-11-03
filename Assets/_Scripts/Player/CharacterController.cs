@@ -8,8 +8,8 @@ public class CharacterController : MonoBehaviour
 
 
 
-    [Header("Movement")][SerializeField] private float moveSpeed;
-    [SerializeField] private float rotateSpeed;
+    [Header("Movement")][SerializeField] public float moveSpeed;
+    [SerializeField] public float rotateSpeed;
 
     [Header("Limits")][SerializeField] protected Vector2 xLimits;
     [SerializeField] protected Vector2 zLimits;
@@ -18,11 +18,15 @@ public class CharacterController : MonoBehaviour
     private Rigidbody rigidbody;
 
     private PlayArea playArea;
+    
+    private CharacterAnimationController characterAnimationController;
+    public CharacterState characterState;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         playArea = GameObject.FindGameObjectWithTag("PlayArea").GetComponent<PlayArea>();
+        characterAnimationController = GetComponentInChildren<CharacterAnimationController>();
     }
 
 
@@ -32,7 +36,30 @@ public class CharacterController : MonoBehaviour
         zLimits = playArea.playLimit.zLimits;
     }
 
+    public void SetCharacterState(CharacterState newCharacterState)
+    {
+        if (newCharacterState == characterState)
+            return;
 
+        characterState = newCharacterState;
+
+        switch (characterState)
+        {
+            case CharacterState.Idle:
+                print("idle");
+                characterAnimationController.SetAnimationState("Idle");
+                break;
+            case CharacterState.Run:
+                print("run");
+                characterAnimationController.SetAnimationState("Run");
+                break;
+            case CharacterState.Dance:
+                print("dance");
+                characterAnimationController.SetAnimationState("Dance");
+                break;
+        }
+    }
+    
     protected virtual void Movement()
     {
         //Move Transform

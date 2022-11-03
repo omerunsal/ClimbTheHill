@@ -8,6 +8,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float followSpeed;
 
     private Vector3 offset;
+    private Quaternion offsetQ;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +20,8 @@ public class CameraFollow : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, Time.fixedDeltaTime * followSpeed);
+        
+        // transform.LookAt(target.position);
+
     }
 }

@@ -8,15 +8,20 @@ public class CarSpawner : MonoBehaviour
     public List<Vector3> bounceAngleList = new List<Vector3>();
     public List<Transform> bouncePositionList = new List<Transform>();
 
+    public bool isSpawnStart;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StartSpawnCars());
+        isSpawnStart = false;
+        
     }
 
     IEnumerator StartSpawnCars()
     {
-        for (int i = 0; i < 5; i++)
+        isSpawnStart = true;
+        
+        for (int i = 0; i < 10; i++)
         {
             
 
@@ -34,5 +39,9 @@ public class CarSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSpawnStart==false && GameManager.instance.isLevelStarted == true)
+        {
+            StartCoroutine(StartSpawnCars());
+        }
     }
 }
