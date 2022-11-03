@@ -5073,6 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5e43e6b8a896f46a4961deb4642b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostParticle: {fileID: 198990067660205090, guid: a4f8b964c8ec83344bad9dd4dc9e60c4, type: 3}
 --- !u!1 &7434003577898201172
 GameObject:
   m_ObjectHideFlags: 0
